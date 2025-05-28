@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>曾无 - 摄影作品集</title>
+    <base href="/photography-gallery/">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', sans-serif;
+            line-height: 1.6;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+
+        .tag {
+            background: #f0f0f0;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 12px;
+            color: #666;
+            display: inline-block;
+        }
+
+        .tags {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .photographer-header {
+            text-align: center;
+            padding: 40px 20px;
+            background: white;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .photographer-header img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+        }
+
+        .photographer-header h1 {
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .photographer-header p {
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            gap: 30px;
+            padding: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .gallery-item {
+            position: relative;
+            aspect-ratio: 3/2;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            cursor: pointer;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .back-button {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            padding: 10px 20px;
+            background: #4a90e2;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            transition: transform 0.3s;
+            z-index: 100;
+        }
+
+        .back-button:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Lightbox 样式 */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 1000;
+            cursor: pointer;
+        }
+
+        .lightbox.active {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90vh;
+            object-fit: contain;
+        }
+
+        .close-button {
+            position: fixed;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+    </style>
+</head>
+<body>
+    <div class="photographer-header">
+        <img src="images/photographers/zeng_wu.jpg" alt="曾无" onerror="this.src='images/placeholder.jpg'">
+        <h1>曾无</h1>
+        <p>中国知名时尚摄影师，擅长将东方美学与现代时尚完美融合，作品充满诗意与艺术感</p>
+        <div class="tags">
+            <span class="tag">时尚摄影</span>
+            <span class="tag">东方美学</span>
+        </div>
+    </div>
+
+    <div class="gallery">
+        <div class="gallery-item" onclick="openLightbox('images/works/zengwu_1.jpg')">
+            <img src="images/works/zengwu_1.jpg" alt="作品1" onerror="this.src='images/placeholder.jpg'">
+        </div>
+        <div class="gallery-item" onclick="openLightbox('images/works/zengwu_2.jpg')">
+            <img src="images/works/zengwu_2.jpg" alt="作品2" onerror="this.src='images/placeholder.jpg'">
+        </div>
+        <div class="gallery-item" onclick="openLightbox('images/works/zengwu_3.jpg')">
+            <img src="images/works/zengwu_3.jpg" alt="作品3" onerror="this.src='images/placeholder.jpg'">
+        </div>
+    </div>
+
+    <div class="lightbox" onclick="closeLightbox()">
+        <span class="close-button" onclick="closeLightbox()">&times;</span>
+        <img id="lightbox-image" src="" alt="大图">
+    </div>
+
+    <button class="back-button" onclick="location.href='index.html'">返回首页</button>
+
+    <script>
+        function openLightbox(imageSrc) {
+            const lightbox = document.querySelector('.lightbox');
+            const lightboxImage = document.getElementById('lightbox-image');
+            lightboxImage.src = imageSrc;
+            lightbox.classList.add('active');
+        }
+
+        function closeLightbox() {
+            const lightbox = document.querySelector('.lightbox');
+            lightbox.classList.remove('active');
+        }
+
+        // 按ESC键关闭大图
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeLightbox();
+            }
+        });
+    </script>
+</body>
+</html> 
