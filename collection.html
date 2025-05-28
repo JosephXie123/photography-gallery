@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>作品集</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', sans-serif;
+            line-height: 1.6;
+            background: #f5f5f5;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #666;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .back-link:hover {
+            color: #333;
+        }
+
+        .collection-header {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        .collection-title {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .collection-description {
+            color: #666;
+        }
+
+        .photos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .photo-card {
+            position: relative;
+            cursor: pointer;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            aspect-ratio: 1;
+        }
+
+        .photo-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .photo-card:hover img {
+            transform: scale(1.05);
+        }
+
+        /* 图片查看器样式 */
+        .viewer {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+        }
+
+        .viewer.active {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .viewer img {
+            max-width: 90%;
+            max-height: 90vh;
+            object-fit: contain;
+        }
+
+        .viewer-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 10px;
+        }
+
+        .viewer-prev,
+        .viewer-next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 20px;
+        }
+
+        .viewer-prev {
+            left: 20px;
+        }
+
+        .viewer-next {
+            right: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="#" onclick="history.back(); return false;" class="back-link">← 返回</a>
+        
+        <div class="collection-header">
+            <h1 class="collection-title" id="collection-title">作品集</h1>
+            <p class="collection-description" id="collection-description"></p>
+        </div>
+
+        <div class="photos-grid" id="photos-grid">
+            <!-- 照片将通过JavaScript动态加载 -->
+        </div>
+    </div>
+
+    <!-- 图片查看器 -->
+    <div class="viewer" id="viewer">
+        <button class="viewer-close" onclick="closeViewer()">×</button>
+        <button class="viewer-prev" onclick="showPrevImage()">❮</button>
+        <img id="viewer-image" src="" alt="">
+        <button class="viewer-next" onclick="showNextImage()">❯</button>
+    </div>
+
+    <script>
+        // 获取URL参数
+        const urlParams = new URLSearchParams(window.location.search);
+        const photographer = urlParams.get('photographer');
+        const collectionName = urlParams.get('collection');
+
+        // 集合信息
+        const collections = {
+            'VOGUE_Collection': {
+                title: 'VOGUE Collection',
+                description: 'VOGUE、NUMÉRO、ELLE等顶级时尚杂志作品集'
+            },
+            'Lifestyle_Collection': {
+                title: 'Lifestyle Collection',
+                description: 'MODERN WEEKLY、T MAGAZINE等生活方式杂志作品集'
+            },
+            'Brand_Collection': {
+                title: 'Brand Collection',
+                description: '各大品牌商业摄影作品集'
+            },
+            'Art_Collection': {
+                title: 'Art Collection',
+                description: '个人艺术创作与实验性摄影作品集'
+            }
+        };
+
+        // 更新页面标题和描述
+        document.getElementById('collection-title').textContent = collections[collectionName].title;
+        document.getElementById('collection-description').textContent = collections[collectionName].description;
+
+        // 图片查看器变量
+        let currentImageIndex = 0;
+        let images = [];
+
+        // 加载图片
+        async function loadImages() {
+            const photosGrid = document.getElementById('photos-grid');
+            
+            // 这里我们假设每个集合有100张照片（实际应该根据服务器返回的数据动态调整）
+            for (let i = 1; i <= 100; i++) {
+                const imageUrl = `images/works/photographers/${photographer}/${collectionName}/${photographer}_${collectionName}_${String(i).padStart(3, '0')}.jpg`;
+                
+                try {
+                    // 检查图片是否存在
+                    const response = await fetch(imageUrl, { method: 'HEAD' });
+                    if (response.ok) {
+                        const photoCard = document.createElement('div');
+                        photoCard.className = 'photo-card';
+                        photoCard.innerHTML = `<img src="${imageUrl}" alt="${collections[collectionName].title} ${i}" loading="lazy">`;
+                        photoCard.onclick = () => openViewer(images.length);
+                        photosGrid.appendChild(photoCard);
+                        images.push(imageUrl);
+                    }
+                } catch (error) {
+                    console.log(`Image ${i} not found`);
+                    // 如果连续5张图片不存在，我们假设已经到达集合末尾
+                    if (i > 5 && images.length === 0) break;
+                }
+            }
+        }
+
+        // 打开图片查看器
+        function openViewer(index) {
+            currentImageIndex = index;
+            document.getElementById('viewer').classList.add('active');
+            document.getElementById('viewer-image').src = images[currentImageIndex];
+            document.body.style.overflow = 'hidden';
+        }
+
+        // 关闭图片查看器
+        function closeViewer() {
+            document.getElementById('viewer').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // 显示上一张图片
+        function showPrevImage() {
+            currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+            document.getElementById('viewer-image').src = images[currentImageIndex];
+        }
+
+        // 显示下一张图片
+        function showNextImage() {
+            currentImageIndex = (currentImageIndex + 1) % images.length;
+            document.getElementById('viewer-image').src = images[currentImageIndex];
+        }
+
+        // 键盘快捷键
+        document.addEventListener('keydown', (e) => {
+            if (!document.getElementById('viewer').classList.contains('active')) return;
+            
+            switch(e.key) {
+                case 'Escape':
+                    closeViewer();
+                    break;
+                case 'ArrowLeft':
+                    showPrevImage();
+                    break;
+                case 'ArrowRight':
+                    showNextImage();
+                    break;
+            }
+        });
+
+        // 加载图片
+        loadImages();
+    </script>
+</body>
+</html> 
