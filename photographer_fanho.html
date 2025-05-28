@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>何藩 - 摄影作品集</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', sans-serif;
+            line-height: 1.6;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+
+        .back-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #4a90e2;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .photographer-profile {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 30px;
+            display: flex;
+            gap: 30px;
+            align-items: start;
+        }
+
+        .profile-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .profile-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .profile-info h1 {
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .profile-info p {
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .works-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .work-item {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .work-image {
+            width: 100%;
+            height: 300px;
+            overflow: hidden;
+        }
+
+        .work-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .work-item:hover .work-image img {
+            transform: scale(1.05);
+        }
+
+        .work-info {
+            padding: 15px;
+        }
+
+        .work-info h3 {
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .work-info p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        /* Lightbox 样式 */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            padding: 40px;
+        }
+
+        .lightbox.active {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 80vh;
+            object-fit: contain;
+        }
+
+        .lightbox-info {
+            color: white;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .close-button {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .photographer-profile {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .profile-image {
+                margin: 0 auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-button">返回首页</a>
+
+    <div class="photographer-profile">
+        <div class="profile-image">
+            <img src="https://tse4-mm.cn.bing.net/th/id/OIP-C.8sZqkqpUd9UvY-ld7wQQGQHaE8" alt="何藩">
+        </div>
+        <div class="profile-info">
+            <h1>何藩</h1>
+            <p>何藩（1931-2016）是香港最著名的摄影师之一，以其独特的黑白街头摄影作品闻名于世。他的作品体现了20世纪50-60年代香港的市井生活，充满诗意和人文关怀。他的摄影风格融合了东方美学与西方现代主义，创造出独特的视觉语言。</p>
+            <p>主要成就：</p>
+            <ul>
+                <li>1958年获得新加坡摄影沙龙首奖</li>
+                <li>作品被世界多家著名美术馆收藏</li>
+                <li>出版多部摄影集，包括《香港昨日》等</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="works-grid">
+        <div class="work-item" onclick="openLightbox('https://tse1-mm.cn.bing.net/th/id/OIP-C.Q2Q2Q2Q2Q2Q2Q2Q2Q2Q2QHaE8', '午后即景', '1959年，香港中环')">
+            <div class="work-image">
+                <img src="https://tse1-mm.cn.bing.net/th/id/OIP-C.Q2Q2Q2Q2Q2Q2Q2Q2Q2Q2QHaE8" alt="午后即景">
+            </div>
+            <div class="work-info">
+                <h3>午后即景</h3>
+                <p>1959年，香港中环</p>
+            </div>
+        </div>
+
+        <div class="work-item" onclick="openLightbox('https://tse2-mm.cn.bing.net/th/id/OIP-C.W2W2W2W2W2W2W2W2W2W2WHaE8', '梯级', '1961年，香港')">
+            <div class="work-image">
+                <img src="https://tse2-mm.cn.bing.net/th/id/OIP-C.W2W2W2W2W2W2W2W2W2W2WHaE8" alt="梯级">
+            </div>
+            <div class="work-info">
+                <h3>梯级</h3>
+                <p>1961年，香港</p>
+            </div>
+        </div>
+
+        <div class="work-item" onclick="openLightbox('https://tse3-mm.cn.bing.net/th/id/OIP-C.E2E2E2E2E2E2E2E2E2E2E2HaE8', '背影', '1963年，香港')">
+            <div class="work-image">
+                <img src="https://tse3-mm.cn.bing.net/th/id/OIP-C.E2E2E2E2E2E2E2E2E2E2E2HaE8" alt="背影">
+            </div>
+            <div class="work-info">
+                <h3>背影</h3>
+                <p>1963年，香港</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="lightbox" id="lightbox">
+        <span class="close-button" onclick="closeLightbox()">&times;</span>
+        <img id="lightbox-image" src="" alt="作品大图">
+        <div class="lightbox-info">
+            <h3 id="lightbox-title"></h3>
+            <p id="lightbox-description"></p>
+        </div>
+    </div>
+
+    <script>
+        function openLightbox(imageSrc, title, description) {
+            document.getElementById('lightbox').classList.add('active');
+            document.getElementById('lightbox-image').src = imageSrc;
+            document.getElementById('lightbox-title').textContent = title;
+            document.getElementById('lightbox-description').textContent = description;
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+        }
+
+        // 点击 Lightbox 背景关闭
+        document.getElementById('lightbox').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeLightbox();
+            }
+        });
+    </script>
+</body>
+</html> 
