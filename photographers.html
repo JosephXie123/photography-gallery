@@ -20,9 +20,16 @@
 
     <main>
         <h1>中国著名摄影师</h1>
+        <div class="category-nav">
+            <button class="category-btn active" data-category="all">全部</button>
+            <button class="category-btn" data-category="街头摄影">街头摄影</button>
+            <button class="category-btn" data-category="纪实摄影">纪实摄影</button>
+            <button class="category-btn" data-category="时尚摄影">时尚摄影</button>
+            <button class="category-btn" data-category="艺术摄影">艺术摄影</button>
+        </div>
         <div class="photographers-grid">
             <!-- 何藩 -->
-            <div class="photographer-card" onclick="location.href='photographer.html?id=fan_ho'">
+            <div class="photographer-card" data-category="街头摄影" onclick="location.href='photographer.html?id=fan_ho'">
                 <div class="photographer-image">
                     <img src="images/photographers/fan_ho.jpg" alt="何藩" onerror="this.src='images/placeholder.jpg'">
                 </div>
@@ -33,20 +40,8 @@
                 </div>
             </div>
 
-            <!-- 荒木经惟 -->
-            <div class="photographer-card" onclick="location.href='photographer.html?id=nobuyoshi_araki'">
-                <div class="photographer-image">
-                    <img src="images/photographers/nobuyoshi_araki.jpg" alt="荒木经惟" onerror="this.src='images/placeholder.jpg'">
-                </div>
-                <div class="photographer-info">
-                    <h2>荒木经惟</h2>
-                    <p>当代最具争议性和影响力的摄影师之一</p>
-                    <span class="category">艺术摄影</span>
-                </div>
-            </div>
-
             <!-- 王福春 -->
-            <div class="photographer-card" onclick="location.href='photographer.html?id=wang_fuchun'">
+            <div class="photographer-card" data-category="纪实摄影" onclick="location.href='photographer.html?id=wang_fuchun'">
                 <div class="photographer-image">
                     <img src="images/photographers/wang_fuchun.jpg" alt="王福春" onerror="this.src='images/placeholder.jpg'">
                 </div>
@@ -57,15 +52,27 @@
                 </div>
             </div>
 
-            <!-- 谢昭阳 -->
-            <div class="photographer-card" onclick="location.href='photographer.html?id=xie_zhaoyang'">
+            <!-- 张家诚 -->
+            <div class="photographer-card" data-category="时尚摄影" onclick="location.href='photographer.html?id=zhang_jc'">
                 <div class="photographer-image">
-                    <img src="images/photographers/xie_zhaoyang.jpg" alt="谢昭阳" onerror="this.src='images/placeholder.jpg'">
+                    <img src="images/photographers/zhang_jc.jpg" alt="张家诚" onerror="this.src='images/placeholder.jpg'">
                 </div>
                 <div class="photographer-info">
-                    <h2>谢昭阳</h2>
-                    <p>中国当代风光摄影的代表人物</p>
-                    <span class="category">风光摄影</span>
+                    <h2>张家诚</h2>
+                    <p>以独特视角和创新手法著称的时尚摄影大师</p>
+                    <span class="category">时尚摄影</span>
+                </div>
+            </div>
+
+            <!-- 曾无 -->
+            <div class="photographer-card" data-category="时尚摄影" onclick="location.href='photographer.html?id=zeng_wu'">
+                <div class="photographer-image">
+                    <img src="images/photographers/zeng_wu.jpg" alt="曾无" onerror="this.src='images/placeholder.jpg'">
+                </div>
+                <div class="photographer-info">
+                    <h2>曾无</h2>
+                    <p>新生代时尚摄影师的代表人物，擅长传统与现代的融合</p>
+                    <span class="category">时尚摄影</span>
                 </div>
             </div>
         </div>
@@ -96,5 +103,31 @@
     </footer>
 
     <script src="photographers.js"></script>
+    <script>
+        // 分类筛选功能
+        document.addEventListener('DOMContentLoaded', function() {
+            const categoryBtns = document.querySelectorAll('.category-btn');
+            const photographerCards = document.querySelectorAll('.photographer-card');
+
+            categoryBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // 移除所有按钮的active类
+                    categoryBtns.forEach(b => b.classList.remove('active'));
+                    // 给当前按钮添加active类
+                    this.classList.add('active');
+
+                    const category = this.dataset.category;
+                    
+                    photographerCards.forEach(card => {
+                        if (category === 'all' || card.dataset.category === category) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        });
+    </script>
 </body>
 </html> 

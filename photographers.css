@@ -288,4 +288,34 @@ footer {
     .photographer-detail {
         padding: 1rem;
     }
+}
+
+/* 分类导航 */
+.category-nav {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin: 2rem 0;
+    flex-wrap: wrap;
+}
+
+.category-btn {
+    padding: 0.5rem 1.5rem;
+    border: 2px solid #333;
+    border-radius: 25px;
+    background: transparent;
+    color: #333;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.category-btn:hover {
+    background: #333;
+    color: white;
+}
+
+.category-btn.active {
+    background: #333;
+    color: white;
 } 

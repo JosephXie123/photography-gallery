@@ -45,6 +45,52 @@ const photographers = {
                 image: 'images/works/wang_3.jpg'
             }
         ]
+    },
+    'zhang_jc': {
+        name: '张家诚',
+        bio: '张家诚是一位著名的时尚摄影师，以其独特的视角和创新的拍摄手法在时尚摄影领域享有盛誉。他的作品经常出现在各大时尚杂志中，展现了独特的东方美学。',
+        category: '时尚摄影',
+        image: 'images/photographers/zhang_jc.jpg',
+        works: [
+            {
+                title: '东方韵',
+                description: '2020年，上海时装周',
+                image: 'images/works/zhang_1.jpg'
+            },
+            {
+                title: '现代旗袍',
+                description: '2021年，北京',
+                image: 'images/works/zhang_2.jpg'
+            },
+            {
+                title: '都市映像',
+                description: '2022年，广州',
+                image: 'images/works/zhang_3.jpg'
+            }
+        ]
+    },
+    'zeng_wu': {
+        name: '曾无',
+        bio: '曾无是新生代时尚摄影师的代表人物，擅长将传统元素与现代时尚完美融合。他的作品充满实验性和创新精神，为中国时尚摄影带来了新的可能性。',
+        category: '时尚摄影',
+        image: 'images/photographers/zeng_wu.jpg',
+        works: [
+            {
+                title: '新中式',
+                description: '2023年，成都',
+                image: 'images/works/zeng_1.jpg'
+            },
+            {
+                title: '光影交错',
+                description: '2022年，深圳',
+                image: 'images/works/zeng_2.jpg'
+            },
+            {
+                title: '未来主义',
+                description: '2023年，杭州',
+                image: 'images/works/zeng_3.jpg'
+            }
+        ]
     }
     // 可以继续添加更多摄影师数据
 };
