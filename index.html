@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>中国摄影师作品集</title>
+    <base href="/photography-gallery/">
     <style>
         * {
             margin: 0;
@@ -130,6 +131,7 @@
             <button class="category-btn active" data-category="all">全部</button>
             <button class="category-btn" data-category="street">街头摄影</button>
             <button class="category-btn" data-category="documentary">纪实摄影</button>
+            <button class="category-btn" data-category="fashion">时尚摄影</button>
             <button class="category-btn" data-category="landscape">风光摄影</button>
             <button class="category-btn" data-category="portrait">人像摄影</button>
         </div>
@@ -139,7 +141,7 @@
         <!-- 何藩 -->
         <div class="photographer-card" data-category="street" onclick="location.href='photographer_fanho.html'">
             <div class="photographer-image">
-                <img src="https://tse4-mm.cn.bing.net/th/id/OIP-C.8sZqkqpUd9UvY-ld7wQQGQHaE8" alt="何藩">
+                <img src="images/photographers/fan_ho.jpg" alt="何藩" onerror="this.src='images/placeholder.jpg'">
             </div>
             <div class="photographer-info">
                 <h2>何藩</h2>
@@ -154,7 +156,7 @@
         <!-- 王福春 -->
         <div class="photographer-card" data-category="documentary" onclick="location.href='photographer_wangfuchun.html'">
             <div class="photographer-image">
-                <img src="https://tse2-mm.cn.bing.net/th/id/OIP-C.DF_qYDgG_Hs0_Wd_4y9UmQHaE7" alt="王福春">
+                <img src="images/photographers/wang_fuchun.jpg" alt="王福春" onerror="this.src='images/placeholder.jpg'">
             </div>
             <div class="photographer-info">
                 <h2>王福春</h2>
@@ -169,7 +171,7 @@
         <!-- 卢广 -->
         <div class="photographer-card" data-category="documentary" onclick="location.href='photographer_luguang.html'">
             <div class="photographer-image">
-                <img src="https://tse2-mm.cn.bing.net/th/id/OIP-C.8J8_4Q9Q8Q9Q8Q9Q8Q9Q8QHaE8" alt="卢广">
+                <img src="images/photographers/lu_guang.jpg" alt="卢广" onerror="this.src='images/placeholder.jpg'">
             </div>
             <div class="photographer-info">
                 <h2>卢广</h2>
@@ -177,6 +179,21 @@
                 <div class="tags">
                     <span class="tag">纪实摄影</span>
                     <span class="tag">环境议题</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 张家诚 -->
+        <div class="photographer-card" data-category="fashion" onclick="location.href='photographer_zhangjc.html'">
+            <div class="photographer-image">
+                <img src="images/photographers/zhang_jc.jpg" alt="张家诚" onerror="this.src='images/placeholder.jpg'">
+            </div>
+            <div class="photographer-info">
+                <h2>张家诚</h2>
+                <p>以独特视角和创新手法著称的时尚摄影大师</p>
+                <div class="tags">
+                    <span class="tag">时尚摄影</span>
+                    <span class="tag">创意摄影</span>
                 </div>
             </div>
         </div>

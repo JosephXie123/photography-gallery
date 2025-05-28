@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>张家诚 - 摄影作品集</title>
+    <base href="/photography-gallery/">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', sans-serif;
+            line-height: 1.6;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+
+        .tag {
+            background: #f0f0f0;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 12px;
+            color: #666;
+        }
+
+        .tags {
+            display: flex;
+            gap: 10px;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+        
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+        
+        .work-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 20px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.7));
+            color: white;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .gallery-item:hover .work-info {
+            opacity: 1;
+        }
+        
+        .photographer-header {
+            text-align: center;
+            padding: 40px 20px;
+            background: white;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .photographer-header img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+        }
+        
+        .back-button {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            padding: 10px 20px;
+            background: #4a90e2;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            transition: transform 0.3s;
+        }
+        
+        .back-button:hover {
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="photographer-header">
+        <img src="images/photographers/zhang_jc.jpg" alt="张家诚" onerror="this.src='images/placeholder.jpg'">
+        <h1>张家诚</h1>
+        <p>以独特视角和创新手法著称的时尚摄影大师</p>
+        <div class="tags" style="justify-content: center; margin-top: 10px;">
+            <span class="tag">时尚摄影</span>
+            <span class="tag">创意摄影</span>
+        </div>
+    </div>
+
+    <div class="gallery">
+        <div class="gallery-item">
+            <img src="images/works/zhang_1.jpg" alt="东方韵" onerror="this.src='images/placeholder.jpg'">
+            <div class="work-info">
+                <h3>东方韵</h3>
+                <p>2020年，上海时装周</p>
+            </div>
+        </div>
+        <div class="gallery-item">
+            <img src="images/works/zhang_2.jpg" alt="现代旗袍" onerror="this.src='images/placeholder.jpg'">
+            <div class="work-info">
+                <h3>现代旗袍</h3>
+                <p>2021年，北京</p>
+            </div>
+        </div>
+        <div class="gallery-item">
+            <img src="images/works/zhang_3.jpg" alt="都市映像" onerror="this.src='images/placeholder.jpg'">
+            <div class="work-info">
+                <h3>都市映像</h3>
+                <p>2022年，广州</p>
+            </div>
+        </div>
+    </div>
+
+    <button class="back-button" onclick="location.href='index.html'">返回首页</button>
+</body>
+</html> 

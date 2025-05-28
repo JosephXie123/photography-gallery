@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Generate Placeholder</title>
+</head>
+<body>
+    <canvas id="canvas" width="400" height="400"></canvas>
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        
+        // 背景
+        ctx.fillStyle = '#f0f0f0';
+        ctx.fillRect(0, 0, 400, 400);
+        
+        // 相机图标
+        ctx.strokeStyle = '#999';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.rect(150, 160, 100, 80);
+        ctx.stroke();
+        
+        // 镜头
+        ctx.beginPath();
+        ctx.arc(200, 200, 20, 0, Math.PI * 2);
+        ctx.stroke();
+        
+        // 文字
+        ctx.fillStyle = '#666';
+        ctx.font = '16px Arial';
+        ctx.textAlign = 'center';
+        ctx.fillText('图片占位符', 200, 260);
+        
+        // 下载图片
+        const link = document.createElement('a');
+        link.download = 'placeholder.jpg';
+        link.href = canvas.toDataURL('image/jpeg');
+        link.click();
+    </script>
+</body>
+</html> 
