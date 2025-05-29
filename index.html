@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>摄影师作品展</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', sans-serif;
+            line-height: 1.6;
+            background: #f5f5f5;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+            padding: 40px 20px;
+        }
+
+        header h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        header p {
+            color: #666;
+            font-size: 18px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .photographers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .photographer-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .photographer-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .photographer-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .photographer-info {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .photographer-name {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .photographer-description {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .tags {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background: #f0f0f0;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>摄影师作品展</h1>
+            <p>展示优秀摄影师的精选作品集，探索独特的视觉语言与艺术表达</p>
+        </header>
+
+        <div class="photographers-grid">
+            <a href="photographer.html?id=zengwu" class="photographer-card">
+                <img src="images/works/photographers/zengwu/profile.jpg" alt="曾无" class="photographer-image">
+                <div class="photographer-info">
+                    <h2 class="photographer-name">曾无</h2>
+                    <p class="photographer-description">中国知名时尚摄影师，擅长将东方美学与现代时尚完美融合，作品充满诗意与艺术感</p>
+                    <div class="tags">
+                        <span class="tag">时尚摄影</span>
+                        <span class="tag">东方美学</span>
+                    </div>
+                </div>
+            </a>
+            <!-- 在这里可以继续添加更多摄影师卡片 -->
+        </div>
+    </div>
+</body>
+</html> 
